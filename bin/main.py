@@ -4,10 +4,10 @@ import src.video as vidlib
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-config = configlib.getConfig()
+config = configlib.getRxnConfig()
 grid = rxnlib.RxnGrid(*config[0], **config[1])
-snapshots = grid.run(1, return_snaps=True)
-video_params = vidlib.getVideoParams()
-video = vidlib.makeVideo(snapshots, *video_params)
-video_save_params = vidlib.getSaveParams()
-vidlib.saveVideo(video, *video_save_params)
+snapshots = grid.run(10, return_snaps=True)
+video_params = configlib.getVideoParams()
+vidlib.makeVideo(snapshots, **video_params)
+video_save_params = configlib.getSaveParams()
+vidlib.saveVideo(**video_save_params)
