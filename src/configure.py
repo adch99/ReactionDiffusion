@@ -2,6 +2,11 @@
 # Provides API for possible frontends.
 import numpy as np
 def getRxnConfig():
+    """
+    Returns the params used for creating the rxn.RxnGrid
+    object as [args, kwargs]. See rxn.RxnGrid for more
+    details.
+    """
     reagent1 = np.zeros((10, 10))
     reagent1[4, 4] = 1
     reagent2 = np.zeros((10, 10))
@@ -20,11 +25,18 @@ def getRxnConfig():
     return config
 
 def getVideoParams():
+    """
+    Present for extending code later. Ignore for now.
+    """
     config = {
     }
     return config
 
 def getSaveParams():
+    """
+    Returns the parameters (fps, filename) used to save the
+    video
+    """
     config = {
         "filename": "vid/rxndiffusion_diagonal.mp4",
         "fps": 10
