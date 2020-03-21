@@ -5,7 +5,8 @@ def getRxnConfig():
     reagent1 = np.zeros((10, 10))
     reagent1[4, 4] = 1
     reagent2 = np.zeros((10, 10))
-    # reagent2[3, 3] = 1
+    reagent2[1, 1] = 0.5
+    reagent2[8, 8] = 0.5
     args = [
         (10, 10), #grid_size
         [1, 0.5], #diff_rates
@@ -25,7 +26,7 @@ def getVideoParams():
 
 def getSaveParams():
     config = {
-        "filename": "vid/rxndiffusion.mp4",
-        "fps": 3
+        "filename": "vid/rxndiffusion_diagonal.mp4",
+        "fps": 10
     }
     return config

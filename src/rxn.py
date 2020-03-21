@@ -3,6 +3,24 @@ import numpy as np
 
 class RxnGrid(object):
     def __init__(self, grid_size, diff_rates, activation_rates, init_concs, timestep=0.1):
+        """
+        Creates a grid on which different reagents' conc can be simulated
+        with time. Supports processes of diffusion and chemical activation/
+        inhibition of other reagents.
+
+        Parameters:
+        -----------
+        grid_size: tuple of (length, width) specifying the dimensions of the
+            grid being used for simulation.
+        diff_rates: list/numpy array with diffusion rates of reagents in order.
+        activation_rates: (num_reagents,num_reagents) numpy ndarray/matrix with
+            M[i, j] indicating the effect of reagent i on reagent j. Entries
+            can be negative numbers to indicate inhibitory behaviour.
+        init_concs: (num_reagents, length, width) ndarray giving initial values
+            for concentrations of each reagent.
+        timestep: Time evolved in each step of the simulation.
+        """
+
         self.grid_size = grid_size
         self.diff_rates = diff_rates
         self.activation_rates = activation_rates
@@ -28,6 +46,14 @@ class RxnGrid(object):
 
 
     def run(self, time, return_snaps=False):
+        """
+        Runs the simulation for the given amount of time.
+        Note that the actual number of iterations happening
+        will be ceil(time/timestep).
+        If return_snaps is True, then returns a copy of the concentration
+        grids of all reagents as a (num_reagents, length, width)
+        numpy array.
+        """
         num_steps = int(np.ceil(time / self.timestep))
         snapshots = [self.grid.copy()]
         for i in range(num_steps):

@@ -8,7 +8,13 @@ import glob
 import subprocess
 
 def saveVideo(filename="output.mp4", fps=10):
-    subprocess.call(r"ffmpeg -r " + str(fps) + " -i img/%03d.png -vcodec mpeg4 -acodec aac vid/" + filename + " -v quiet -y", shell=True)
+    exit_code = subprocess.call(r"ffmpeg -r " + str(fps) + " -i img/%03d.png -vcodec mpeg4 -acodec aac " + filename + " -v quiet -y", shell=True)
+
+    if exit_code != 0:
+        print("Encountered error in ffmpeg! Running again in verbose mode.")
+        process_return = subprocess.call(r"ffmpeg -r " + str(fps) + " -i img/%03d.png -vcodec mpeg4 -acodec aac " + filename + " -y", shell=True)
+
+
 
 
 def makeVideo(snapshots, **config):
