@@ -23,4 +23,5 @@ package since `ffmpeg` needs to be installed separately.
 If you want to use this code for your own purposes
 without getting into the details, then fork this repo
 and rewrite the `src/configure.py` file as per your
-requirements.
+requirements. Create `img` and `vid` directories for
+the outputs.
